@@ -1,7 +1,8 @@
 RULE	event EpisodeStart
 	:action
 		
-		CurEpisode := 0;
+		ActEpisode := 0;
+		ActMission := 0;
 		
 		uCall(Mod.UniverseScriptLibrary.Example, 0);
 		

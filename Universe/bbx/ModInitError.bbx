@@ -37,19 +37,22 @@ RULE	event Seq
 		bbTextOut(512,100, "ERROR:");
 		bbTextSize(50, 1);
 		
+		if (U.SOOC_MISSING,
+			bbTextOut(512, 200, "Mod `Switch off original campaign` missing")
+		);
+		
 		if (U.uSL_ERROR_MISSING,
-			bbTextOut(512, 200, "Universe Script Library missing")
+			bbTextOut(512, 250, "Universe Script Library missing")
 		);
 		
 		if (U.uSL_ERROR_VERSIONMISSMATCH,
-			bbTextOut(512, 200, "Universe Script Library version mismatch");
+			bbTextOut(512, 300, "Universe Script Library version mismatch");
 			bbTextSize(25, 1);
-			c_ver := sNum(#uSL_VERSION, 1);
+			c_ver := sNum(U.uSL.VERSION, 1);
 			n_ver := sNum(#uSL_REQUIRED_LOW, 1);
-			bbTextOut(512, 250, sCat("current uSL version: ", c_ver));
-			bbTextOut(512, 275, sCat("need uSL version >= ", n_ver));
+			bbTextOut(512, 350, sCat("current uSL version: ", c_ver));
+			bbTextOut(512, 375, sCat("need uSL version >= ", n_ver));
 		);
-	
 	
 		bbTextAlign(#DT_RIGHT + #DT_BOTTOM);
 		bbTextSize(25, 1);
