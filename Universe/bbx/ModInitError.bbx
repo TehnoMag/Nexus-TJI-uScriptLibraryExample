@@ -1,0 +1,59 @@
+RULE	event MovieInit
+	:action
+	
+		guiSelect(0);
+		localEvent(CreateView);
+		
+		localEvent(Seq);
+		
+	:end
+END
+
+RULE	event Skip
+	:action
+	
+		TerminateApp();
+		
+	:end
+END
+
+RULE	event CreateView
+	:action
+	
+		view := bbAddView();
+		layer0 := view:addLayer(0);
+	
+	:end
+END
+
+RULE	event Seq
+	:action
+	
+		view:setCurrent();
+	
+		bbTextAlign(#DT_CENTER + #DT_TOP);
+		bbTextColor(1,0,0,1);
+		bbTextSize(100,1);
+		bbTextOut(512,100, "ERROR:");
+		bbTextSize(50, 1);
+		
+		if (U.uSL_ERROR_MISSING,
+			bbTextOut(512, 200, "Universe Script Library missing")
+		);
+		
+		if (U.uSL_ERROR_VERSIONMISSMATCH,
+			bbTextOut(512, 200, "Universe Script Library version mismatch");
+			bbTextSize(25, 1);
+			c_ver := sNum(#uSL_VERSION, 1);
+			n_ver := sNum(#uSL_REQUIRED_LOW, 1);
+			bbTextOut(512, 250, sCat("current uSL version: ", c_ver));
+			bbTextOut(512, 275, sCat("need uSL version >= ", n_ver));
+		);
+	
+	
+		bbTextAlign(#DT_RIGHT + #DT_BOTTOM);
+		bbTextSize(25, 1);
+		bbTextOut(1024,766, "Press Esc to Quit");
+		
+	:end
+END

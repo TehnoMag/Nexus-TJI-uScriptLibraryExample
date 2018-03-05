@@ -1,0 +1,9 @@
+RULE	event EpisodeStart
+	:action
+		
+		CurEpisode := 0;
+		
+		uCall(Mod.UniverseScriptLibrary.Example, 0);
+		
+	:end
+END
